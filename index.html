@@ -3,120 +3,45 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cálculo IR</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            background-color: #f4f4f4;
-            margin: 0;
-        }
-        .container {
-            text-align: center;
-            background-color: #fff;
-            padding: 20px;
-            border-radius: 10px;
-            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
-            width: 300px;
-        }
-        h1 {
-            margin-bottom: 20px;
-        }
-        .button-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 10px;
-        }
-        .button {
-            position: relative;
-            padding: 15px;
-            font-size: 16px;
-            color: #fff;
-            background-color: #007BFF;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-            text-decoration: none;
-            text-align: center;
-        }
-        .button:hover {
-            background-color: #0056b3;
-        }
-        /* Estilo do tooltip */
-        .tooltiptext {
-            visibility: hidden;
-            width: 140px;
-            background-color: #555;
-            color: #fff;
-            text-align: center;
-            border-radius: 6px;
-            padding: 5px 0;
-            position: absolute;
-            z-index: 1;
-            bottom: 125%; /* Posição acima do botão */
-            left: 50%;
-            margin-left: -70px; /* Centraliza a caixinha */
-            opacity: 0;
-            transition: opacity 0.3s;
-        }
-        .tooltiptext::after {
-            content: "";
-            position: absolute;
-            top: 100%; /* Seta na parte inferior da caixinha */
-            left: 50%;
-            margin-left: -5px;
-            border-width: 5px;
-            border-style: solid;
-            border-color: #555 transparent transparent transparent;
-        }
-        .button:hover .tooltiptext {
-            visibility: visible;
-            opacity: 1;
-        }
-    </style>
+    <title>INSS 11%</title>
+    <link rel="stylesheet" href="styles.css">
 </head>
-
 <body>
-    <div class="container">
-        <h1>Selecione uma opção de cálculo</h1>
-        <div class="button-grid">
 
-            <a href="U:\BackupContabilidade\Contabilidade-Lucas Akio\Lucas\html\Calcudora IRRF 1.2\index.html" class="button">
-                Cálculo 1,2%
-                <span class="tooltiptext">Calcula 1,2% do valor</span>
-            </a>
+<button class="back-button" onclick="window.location.href='U:/BackupContabilidade/Contabilidade-Lucas Akio/Lucas/html/Home Calculadora/HomeCalculadora.html'">Voltar</button>
 
-            <a href="U:\BackupContabilidade\Contabilidade-Lucas Akio\Lucas\html\Calcudora IRRF 2.4\index.html" class="button">
-                Cálculo 2,4%
-                <span class="tooltiptext">Calcula 2,4% do valor</span>
-            </a>
-
-            <a href="U:\BackupContabilidade\Contabilidade-Lucas Akio\Lucas\html\Calcudora IRRF 4.8\index.html" class="button">
-                Cálculo 4,8%
-                <span class="tooltiptext">Calcula 4,8% do valor</span>
-            </a>
-
-            <a href="U:\BackupContabilidade\Contabilidade-Lucas Akio\Lucas\html\Calcudora IRRF 0.24\index.html" class="button">
-                Cálculo 0,24%
-                <span class="tooltiptext">Calcula 0,24% do valor</span>
-            </a>
-
-            <a href="U:\BackupContabilidade\Contabilidade-Lucas Akio\Lucas\html\Calcudora INSS 11\index.html" class="button">
-                Cálculo 11%
-                <span class="tooltiptext">Calcula 11% do valor</span>
-            </a>
-
-            <a href="U:\BackupContabilidade\Contabilidade-Lucas Akio\Lucas\html\Contar 15 Dias Corridos\Contar15DiasCorridos.html" class="button">
-                15 Dias Corridos
-                <span class="tooltiptext">15 dias corridos</span>
-            </a>
-
-        </div>
+    <div class="calculator">
+        <h1>INSS 11%</h1>
+        <form id="calculatorForm">
+            <label for="value">Digite o valor:</label>
+            <input type="number" id="value" step="any" required>
+        </form>
+        <div id="result"></div>
     </div>
+
+    <script>
+        function calcularPercentual() {
+            // Obtém o valor digitado pelo usuário
+            const valor = parseFloat(document.getElementById('value').value);
+            
+            if (isNaN(valor)) {
+                document.getElementById('result').textContent = 'Por favor, insira um valor válido.';
+                return;
+            }
+            
+            // Calcula 0,24% do valor
+            const percentual = 11.0 / 100;
+            const resultado = valor * percentual;
+            
+            // Formata o valor como moeda brasileira
+            const resultadoFormatado = resultado.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' });
+            
+            // Exibe o resultado
+            document.getElementById('result').textContent = `OBS.: RETENÇÃO DE INSS 11% - ${resultadoFormatado}.`;
+        }
+
+        // Adiciona o evento de input para calcular automaticamente
+        document.getElementById('value').addEventListener('input', calcularPercentual);
+    </script>
 </body>
-
 </html>
-
