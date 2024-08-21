@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculadora de Data</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<button class="back-button" onclick="window.location.href='U:/BackupContabilidade/Contabilidade-Lucas Akio/Lucas/html/Home Calculadora/HomeCalculadora.html'">Voltar</button>
+
+    <div class="container">
+        <h2>Calculadora de 15 dias corridos</h2>
+        <label for="data">Selecione a data:</label>
+        <input type="date" id="data" required>
+        <button onclick="calcularData()">Calcular</button>
+
+        <p id="resultado"></p>
+    </div>
+
+    <script>
+        function calcularData() {
+            var data = new Date(document.getElementById("data").value);
+            data.setDate(data.getDate() + 16);
+            var dia = String(data.getDate()).padStart(2, '0');
+            var mes = String(data.getMonth() + 1).padStart(2, '0');
+            var ano = data.getFullYear();
+            var dataFinal = dia + '/' + mes + '/' + ano;
+            document.getElementById("resultado").innerText = "A data 15 dias corridos é: " + dataFinal;
+        }
+    </script>
+</body>
+</html>
